@@ -27,7 +27,7 @@
 #include "Turret.hpp"
 #include "TurretButton.hpp"
 
-bool PlayScene::DebugMode = false;
+bool PlayScene::DebugMode = true;
 const std::vector<Engine::Point> PlayScene::directions = { Engine::Point(-1, 0), Engine::Point(0, -1), Engine::Point(1, 0), Engine::Point(0, 1) };
 const int PlayScene::MapWidth = 20, PlayScene::MapHeight = 13;
 const int PlayScene::BlockSize = 64;
@@ -253,7 +253,7 @@ void PlayScene::EarnMoney(int money) {
 	UIMoney->Text = std::string("$") + std::to_string(this->money);
 }
 void PlayScene::ReadMap() {
-	std::string filename = std::string("resources/map") + std::to_string(MapId) + ".txt";
+	std::string filename = std::string("resources/maps/map") + std::to_string(MapId) + ".txt";
 	// Read map file.
 	char c;
 	std::vector<bool> mapData;
@@ -288,7 +288,7 @@ void PlayScene::ReadMap() {
 	}
 }
 void PlayScene::ReadEnemyWave() {
-	std::string filename = std::string("resources/enemy") + std::to_string(MapId) + ".txt";
+	std::string filename = std::string("resources/waves/enemy") + std::to_string(MapId) + ".txt";
 	// Read enemy file.
 	float type, wait, repeat;
 	enemyWaveData.clear();

@@ -27,6 +27,7 @@
 [INFO] Destroyed Resource<font>
 [INFO] Destroyed Resource<audio>
 [INFO] Loaded Resource<image>: resources/images/play/dirt.png scaled to 64x64
+[INFO] Loaded Resource<image>: resources/images/play/floor.png scaled to 64x64
 [INFO] Loaded Resource<image>: resources/images/play/sand.png scaled to 320x832
 [INFO] Loaded Resource<font>: resources/fonts/pirulen.ttf with size 32
 [INFO] Loaded Resource<font>: resources/fonts/pirulen.ttf with size 24
