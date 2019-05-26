@@ -74,7 +74,6 @@ void PlayScene::Initialize() {
 void PlayScene::Update(float deltaTime) {
 	// If we use deltaTime directly, then we might have Bullet-through-paper problem.
 	// Reference: Bullet-Through-Paper
-	Engine::GameEngine::GetInstance().ChangeScene("lose");
 	for (int i = 0; i < SpeedMult; i++) {
 		IScene::Update(deltaTime);
 		// Check if we should create new enemy.
