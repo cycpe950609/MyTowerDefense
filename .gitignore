@@ -3,4 +3,5 @@
 *.o
 *.dll
 *.zip
-
+*.log
+log.txt

@@ -2285,3 +2285,33 @@
 	"Point.hpp"
 	"WinScene.hpp"
 
+1558884900 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\playscene.cpp
+	<allegro5/allegro.h>
+	<cmath>
+	<fstream>
+	<functional>
+	<queue>
+	<string>
+	<memory>
+	<string>
+	"AudioHelper.hpp"
+	"DirtyEffect.hpp"
+	"Enemy.hpp"
+	"GameEngine.hpp"
+	"Group.hpp"
+	"IObject.hpp"
+	"Image.hpp"
+	"Label.hpp"
+	"LaserTurret.hpp"
+	"MachineGunTurret.hpp"
+	"MissileTurret.hpp"
+	"Plane.hpp"
+	"PlaneEnemy.hpp"
+	"PlayScene.hpp"
+	"SoldierEnemy.hpp"
+	"Sprite.hpp"
+	"TankEnemy.hpp"
+	"Turret.hpp"
+	"TurretButton.hpp"
+	<iostream>
+

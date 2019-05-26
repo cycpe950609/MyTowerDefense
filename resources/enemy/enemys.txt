@@ -1,0 +1,2 @@
+4
+10 50 5 5 BODY enemy-1 AUTO END

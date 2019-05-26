@@ -27,7 +27,10 @@
 #include "Turret.hpp"
 #include "TurretButton.hpp"
 
-bool PlayScene::DebugMode = true;
+#include <iostream>
+using namespace std;
+
+bool PlayScene::DebugMode = false;
 const std::vector<Engine::Point> PlayScene::directions = { Engine::Point(-1, 0), Engine::Point(0, -1), Engine::Point(1, 0), Engine::Point(0, 1) };
 const int PlayScene::MapWidth = 20, PlayScene::MapHeight = 13;
 const int PlayScene::BlockSize = 64;
@@ -71,6 +74,7 @@ void PlayScene::Initialize() {
 void PlayScene::Update(float deltaTime) {
 	// If we use deltaTime directly, then we might have Bullet-through-paper problem.
 	// Reference: Bullet-Through-Paper
+	Engine::GameEngine::GetInstance().ChangeScene("lose");
 	for (int i = 0; i < SpeedMult; i++) {
 		IScene::Update(deltaTime);
 		// Check if we should create new enemy.
@@ -206,6 +210,7 @@ void PlayScene::OnKeyDown(int keyCode) {
 		DebugMode = !DebugMode;
 	}
 	else {
+
 		keyStrokes.push_back(keyCode);
 		if (keyStrokes.size() > code.size())
 			keyStrokes.pop_front();
@@ -396,38 +401,14 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
 		int px = static_cast<int>(p.x);
 		int py = static_cast<int>(p.y);
 
-		if(px + 1 < MapWidth)//right
-            if(mapState[py][px+1] == TILE_DIRT)
-                if(map[py][px+1] == -1 || map[py][px] + 1 < map[py][px + 1])//hasn't gone || shorter route
-                {
-                    que.push(Engine::Point(px+1,py));
-                    map[py][px+1] = map[py][px] + 1;
-                }
-
-
-        if(py + 1 < MapHeight)//down
-            if(mapState[py+1][px] == TILE_DIRT)
-                if(map[py + 1][px] == -1 || map[py][px] + 1 < map[py+1][px])//hasn't gone || shorter route
-                {
-                    que.push(Engine::Point(px,py+1));
-                    map[py+1][px] = map[py][px] + 1;
-                }
-
-        if(px - 1 > 0)//left
-            if(mapState[py][px-1] == TILE_DIRT)
-                if(map[py][px-1] == -1 || map[py][px] + 1 < map[py][px - 1])//hasn't gone || shorter route
-                {
-                    que.push(Engine::Point(px-1,py));
-                    map[py][px-1] = map[py][px] + 1;
-                }
-
-        if(py - 1 > 0)//up
-            if(mapState[py-1][px] == TILE_DIRT)
-                if(map[py - 1][px] == -1 || map[py][px] + 1 < map[py-1][px])//hasn't gone || shorter route
-                {
-                    que.push(Engine::Point(px,py-1));
-                    map[py-1][px] = map[py][px] + 1;
-                }
+        for(Engine::Point index : directions)
+            if(px + index.x < MapWidth && px + index.x >= 0 && py + index.y < MapHeight && py + index.y >= 0)
+                if(mapState[py+index.y][px+index.x] == TILE_DIRT)
+                    if(map[py+index.y][px+index.x] == -1 || map[py][px] + 1 < map[py+index.y][px+index.x])//hasn't gone || shorter route
+                    {
+                        que.push(Engine::Point(px+index.x,py+index.y));
+                        map[py+index.y][px+index.x] = map[py][px] + 1;
+                    }
 
 	}
 	return map;
