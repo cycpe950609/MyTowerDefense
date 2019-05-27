@@ -2121,7 +2121,7 @@
 1558706118 \\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\winscene.hpp
 	"IScene.hpp"
 
-1558698306 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\missilebullet.cpp
+1558936512 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\missilebullet.cpp
 	<cmath>
 	<random>
 	<string>
@@ -2197,11 +2197,15 @@
 	"LOG.hpp"
 	"Resources.hpp"
 
-1558707946 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\slider.cpp
+1558893645 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\slider.cpp
 	<algorithm>
 	<string>
+	<iostream>
 	"Point.hpp"
 	"Slider.hpp"
+	"Point.hpp"
+	"Resources.hpp"
+	"Collider.hpp"
 
 1558892851 \\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\slider.hpp
 	<functional>
@@ -2285,7 +2289,7 @@
 	"Point.hpp"
 	"WinScene.hpp"
 
-1558887780 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\playscene.cpp
+1558935529 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\playscene.cpp
 	<allegro5/allegro.h>
 	<cmath>
 	<fstream>
@@ -2305,6 +2309,7 @@
 	"LaserTurret.hpp"
 	"MachineGunTurret.hpp"
 	"MissileTurret.hpp"
+	"NuclearMissileTurrent.hpp"
 	"Plane.hpp"
 	"PlaneEnemy.hpp"
 	"PlayScene.hpp"
@@ -2314,4 +2319,36 @@
 	"Turret.hpp"
 	"TurretButton.hpp"
 	<iostream>
+
+1558936512 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\nuclearmissileturrent.cpp
+	<allegro5/base.h>
+	<cmath>
+	<string>
+	"AudioHelper.hpp"
+	"Group.hpp"
+	"NuclearMissileBullet.hpp"
+	"NuclearMissileTurrent.hpp"
+	"PlayScene.hpp"
+	"Point.hpp"
+
+1558935184 \\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\nuclearmissileturrent.hpp
+	"Turret.hpp"
+
+1558936135 source:\\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\nuclearmissilebullet.cpp
+	<cmath>
+	<random>
+	<string>
+	<utility>
+	"DirtyEffect.hpp"
+	"Enemy.hpp"
+	"Group.hpp"
+	"IObject.hpp"
+	"NuclearMissileBullet.hpp"
+	"PlayScene.hpp"
+	"Point.hpp"
+
+1558936171 \\vboxsvr\ddrive\myprojects\towerdefender-windows-v3\nuclearmissilebullet.hpp
+	<allegro5/base.h>
+	<list>
+	"Bullet.hpp"
 

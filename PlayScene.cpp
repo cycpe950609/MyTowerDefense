@@ -18,6 +18,7 @@
 #include "LaserTurret.hpp"
 #include "MachineGunTurret.hpp"
 #include "MissileTurret.hpp"
+#include "NuclearMissileTurrent.hpp"
 #include "Plane.hpp"
 #include "PlaneEnemy.hpp"
 #include "PlayScene.hpp"
@@ -236,6 +237,10 @@ void PlayScene::OnKeyDown(int keyCode) {
 		// Hotkey for MissileTurret.
 		UIBtnClicked(2);
 	}
+	else if (keyCode == ALLEGRO_KEY_R) {
+		// Hotkey for NuclearMissileTurret.
+		UIBtnClicked(3);
+	}
 	// TODO 2 (5/8): Make the R key to create the 4th turret.
 	else if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
 		// Hotkey for Speed up.
@@ -334,6 +339,13 @@ void PlayScene::ConstructUI() {
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
 	UIGroup->AddNewControlObject(btn);
 	// TODO 2 (3/8): Create a button to support constructing the 4th tower.
+	// Button 4
+	btn = new TurretButton("play/floor.png", "play/dirt.png",
+		Engine::Sprite("play/tower-base.png", 1522, 136, 0, 0, 0, 0),
+		Engine::Sprite("play/turret-4.png", 1522, 136, 0, 0, 0, 0)
+		, 1522, 136, MissileTurret::Price);
+	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
+	UIGroup->AddNewControlObject(btn);
 }
 
 void PlayScene::UIBtnClicked(int id) {
@@ -345,6 +357,9 @@ void PlayScene::UIBtnClicked(int id) {
 		preview = new LaserTurret(0, 0);
 	else if (id == 2 && money >= MissileTurret::Price)
 		preview = new MissileTurret(0, 0);
+    else if (id == 3 && money >= NuclearMissileTurret::Price)
+		preview = new NuclearMissileTurret(0, 0);
+
 	// TODO 2 (4/8): On callback, create the 4th tower.
 	if (!preview)
 		return;

@@ -7,16 +7,16 @@
 #include "Enemy.hpp"
 #include "Group.hpp"
 #include "IObject.hpp"
-#include "MissileBullet.hpp"
+#include "NuclearMissileBullet.hpp"
 #include "PlayScene.hpp"
 #include "Point.hpp"
 
 class Turret;
 
-MissileBullet::MissileBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent) :
-	Bullet("play/bullet-3.png", 200, 6, position, forwardDirection, rotation + ALLEGRO_PI / 2, parent) {
+NuclearMissileBullet::NuclearMissileBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent) :
+	Bullet("play/bullet-4.png", 100, 4, position, forwardDirection, rotation + ALLEGRO_PI / 2, parent) {
 }
-void MissileBullet::Update(float deltaTime) {
+void NuclearMissileBullet::Update(float deltaTime) {
 	if (!Target) {
 		float minDistance = INFINITY;
 		Enemy* enemy = nullptr;
@@ -52,7 +52,7 @@ void MissileBullet::Update(float deltaTime) {
 	Rotation = atan2(Velocity.y, Velocity.x) + ALLEGRO_PI / 2;
 	Bullet::Update(deltaTime);
 }
-void MissileBullet::OnExplode(Enemy* enemy) {
+void NuclearMissileBullet::OnExplode(Enemy* enemy) {
 	Target->lockedBullets.erase(lockedBulletIterator);
 	std::random_device dev;
 	std::mt19937 rng(dev());
