@@ -5,3 +5,4 @@
 *.zip
 *.log
 log.txt
+*.depend
