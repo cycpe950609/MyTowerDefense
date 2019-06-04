@@ -8,17 +8,24 @@ ALLEGRO = `pkg-config --libs allegro-5 allegro_font-5 allegro_ttf-5 allegro_dial
 
 LIB = -Iallegro
 
+
+
 all: 
 	$(CC) -c -g $(CFLAG) $(SOURCEFILE)
 	$(CC) $(OBJFILE) -o $(TARGET) $(ALLEGRO) $(LIB) 
-	./$(TARGET)
+	./$(TARGE1T)
 
+%.o: %.cpp
+	$(CC) -c -g $< $(CFLAGS) -o $@
 compile: 
 	$(CC) -c -g $(CFLAG) $(SOURCEFILE)
-linker:
+linker:$(OBJFILE)
 	$(CC) $(OBJFILE) -o $(TARGET) $(ALLEGRO) $(LIB)
+run:
+	./$(TARGET)
+#fuck:
+#	$(CC) $(CFLAG) -o $(TARGET) $(LIB) $(SOURCEFILE) $(ALLEGRO) 
 
-fuck:
-	$(CC) $(CFLAG) -o $(TARGET) $(LIB) $(SOURCEFILE) $(ALLEGRO) 
+.PHONY: clean
 clean:
 	rm *.o

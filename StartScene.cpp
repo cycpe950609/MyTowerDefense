@@ -22,16 +22,16 @@ void StartScene::Initialize() {
 
 	//enter
 	Engine::ImageButton* btn;
-	btn = new Engine::ImageButton("welcome/dirt.png", "welcome/floor.png", halfW - 200, halfH * 3 / 2 - 50, 400, 100);
+	btn = new Engine::ImageButton("welcome/dirt.png", "welcome/floor.png", halfW - 250, halfH / 2 , 500, 100);
 	btn->SetOnClickCallback(std::bind(&StartScene::ButtonOnClick, this, BTN_WELCOME));
 	AddNewControlObject(btn);
-	AddNewObject(new Engine::Label("Enter Game", "pirulen.ttf", 48, halfW, halfH * 3 / 2, 0, 0, 0, 255, 0.5, 0.5));
+	AddNewObject(new Engine::Label("Enter Game", "pirulen.ttf", 48, halfW, halfH  / 2+50, 0, 0, 0, 255, 0.5, 0.5));
 
 	//exit
-	btn = new Engine::ImageButton("welcome/dirt.png", "welcome/floor.png", halfW - 200, halfH * 3 / 2 + 50, 400, 100);
+	btn = new Engine::ImageButton("welcome/dirt.png", "welcome/floor.png", halfW - 200, halfH / 2 + 150, 400, 100);
 	btn->SetOnClickCallback(std::bind(&StartScene::ButtonOnClick, this, BTN_EXIT));
 	AddNewControlObject(btn);
-	AddNewObject(new Engine::Label("Exit", "pirulen.ttf", 48, halfW, halfH * 3 / 2 + 100, 0, 0, 0, 255, 0.5, 0.5));
+	AddNewObject(new Engine::Label("Exit", "pirulen.ttf", 48, halfW, halfH / 2 + 200, 0, 0, 0, 255, 0.5, 0.5));
 
 
 	/*
@@ -56,5 +56,8 @@ void StartScene::Initialize() {
 //}
 void StartScene::ButtonOnClick(int btnID) {
 	// Change to select scene.
-	Engine::GameEngine::GetInstance().ChangeScene("stage-select");
+	if(btnID == BTN_WELCOME)
+	    Engine::GameEngine::GetInstance().ChangeScene("stage-select");
+	else if(btnID == BTN_EXIT)
+	    exit(0);
 }
