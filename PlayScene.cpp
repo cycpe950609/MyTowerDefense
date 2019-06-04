@@ -82,7 +82,10 @@ void PlayScene::Update(float deltaTime) {
 		ticks += deltaTime;
 		if (enemyWaveData.empty()) {
 			if (EnemyGroup->GetObjects().empty()) {
+				// we dont need to free resource here,cause after change scene
+				// engine will free them auto...ly
 				// Free resources.
+				/*
 				delete TileMapGroup;
 				delete GroundEffectGroup;
 				delete DebugIndicatorGroup;
@@ -90,10 +93,12 @@ void PlayScene::Update(float deltaTime) {
 				delete EnemyGroup;
 				delete BulletGroup;
 				delete EffectGroup;
-				delete UIGroup;
-				delete imgTarget;
+				delete UIGroup;*/
+				//delete imgTarget;
+				//cout << "test" << endl;
 				// Win.
 				Engine::GameEngine::GetInstance().ChangeScene("win");
+				cout << "test" << endl;
 			}
 			continue;
 		}

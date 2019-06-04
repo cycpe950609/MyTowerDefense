@@ -9,3 +9,5 @@ log.txt
 ./allegro-mingw-gcc5.3.0-x86-5.2.0
 *.cbp
 *.layout
+game.out
+.vscode
