@@ -10,6 +10,7 @@ public:
 	void Initialize() override;
 	void Update(float deltaTime) override;
 	void BackOnClick(int stage);
+	void NextOnClick(int stage);
 };
 
 #endif // WINSCENE_HPP
