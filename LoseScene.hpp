@@ -7,6 +7,7 @@ public:
 	explicit LoseScene() = default;
 	void Initialize() override;
 	void BackOnClick(int stage);
+	void RestartOnClick(int stage);
 };
 
 #endif // LOSESCENE_HPP
