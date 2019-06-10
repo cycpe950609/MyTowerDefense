@@ -10,11 +10,12 @@
 #include "NuclearMissileBullet.hpp"
 #include "PlayScene.hpp"
 #include "Point.hpp"
-
+#include "ExplosionEffect.hpp"
+#include <iostream>
 class Turret;
 
 NuclearMissileBullet::NuclearMissileBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent) :
-	Bullet("play/bullet-4.png", 100, 4, position, forwardDirection, rotation + ALLEGRO_PI / 2, parent) {
+	Bullet("play/bullet-4.png", 150, 4, position, forwardDirection, rotation + ALLEGRO_PI / 2, parent) {
 }
 void NuclearMissileBullet::Update(float deltaTime) {
 	if (!Target) {
@@ -57,5 +58,21 @@ void NuclearMissileBullet::OnExplode(Enemy* enemy) {
 	std::random_device dev;
 	std::mt19937 rng(dev());
 	std::uniform_int_distribution<std::mt19937::result_type> dist(4, 10);
+
+	for(auto it : getPlayScene()->EnemyGroup->GetObjects())
+	{
+	     if(it == enemy)
+	     {
+		  continue;
+	     }
+	     if((it->Position - this->Position).Magnitude() < 150.0)
+	     {
+		  ((Enemy*)it)->Hit(this->damage/2);
+		  getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(((Enemy*)it)->Position.x, ((Enemy*)it)->Position.y,"purple"));
+	     }
+	}
+
+
+	getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(Position.x, Position.y,"purple"));
 	getPlayScene()->GroundEffectGroup->AddNewObject(new DirtyEffect("play/dirty-3.png", dist(rng), enemy->Position.x, enemy->Position.y));
 }

@@ -3,6 +3,7 @@
 #include <allegro5/bitmap.h>
 #include <memory>
 #include <vector>
+#include <string>
 
 #include "Sprite.hpp"
 
@@ -16,6 +17,9 @@ protected:
 	float timeSpan = 0.5;
 public:
 	ExplosionEffect(float x, float y);
+	ExplosionEffect(float x, float y,std::string Color);
 	void Update(float deltaTime) override;
+private:
+	std::string explosion_color = "";
 };
 #endif // EXPLOSIONEFFECT_HPP
