@@ -19,7 +19,7 @@ void NuclearMissileTurret::CreateBullet() {
 	Engine::Point diff = Engine::Point(cos(Rotation - ALLEGRO_PI / 2), sin(Rotation - ALLEGRO_PI / 2));
 	float rotation = atan2(diff.y, diff.x);
 	Engine::Point normalized = diff.Normalize();
-	std::cout << diff.x << " " << diff.y << std::endl;
+	//std::cout << diff.x << " " << diff.y << std::endl;
 	Engine::Point normal = Engine::Point(-normalized.y, normalized.x);
 	// Change bullet position to the front of the gun barrel.
 	getPlayScene()->BulletGroup->AddNewObject(new NuclearMissileBullet(Position + normalized * 10 - normal * 6, diff, rotation, this));
