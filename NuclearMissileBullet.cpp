@@ -12,6 +12,7 @@
 #include "Point.hpp"
 #include "ExplosionEffect.hpp"
 #include <iostream>
+#include "Point.hpp"
 class Turret;
 
 NuclearMissileBullet::NuclearMissileBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent) :
@@ -68,11 +69,24 @@ void NuclearMissileBullet::OnExplode(Enemy* enemy) {
 	     if((it->Position - this->Position).Magnitude() < 150.0)
 	     {
 		  ((Enemy*)it)->Hit(this->damage/2);
-		  getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(((Enemy*)it)->Position.x, ((Enemy*)it)->Position.y,"purple"));
+		  //getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(((Enemy*)it)->Position.x, ((Enemy*)it)->Position.y,"purple"));
 	     }
 	}
-
-
+	/*
+	for(int t = 0;t < 20;t++)
+	{
+	    getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(Position.x + 5*t*cos(t*ALLEGRO_PI/5), Position.y + 5*t*sin(t*ALLEGRO_PI/5),"purple")); 
+	}*/
+	
+	for(int i = 0;i < 150;i = i + 50)
+	    for(double j = 0.0;j < 2*ALLEGRO_PI;j = j + ALLEGRO_PI/8)
+	    {
+		getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(Position.x + i*cos(j), Position.y + i * sin(j),"purple"));
+		//Engine::Point p = Engine::Point(Position.x + i,Position.y + j);
+		//if((p - Position).Magnitude() < 150)
+		//   getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(p.x, p.y,"purple"));
+	    }
+	
 	getPlayScene()->EffectGroup->AddNewObject(new ExplosionEffect(Position.x, Position.y,"purple"));
 	getPlayScene()->GroundEffectGroup->AddNewObject(new DirtyEffect("play/dirty-3.png", dist(rng), enemy->Position.x, enemy->Position.y));
 }
