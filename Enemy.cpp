@@ -15,6 +15,9 @@
 #include "PlayScene.hpp"
 #include "Turret.hpp"
 
+#define RED al_map_rgb(255,0,0)
+#define GREEN al_map_rgb(0,255,0)
+
 PlayScene* Enemy::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
@@ -30,7 +33,7 @@ void Enemy::OnExplode() {
 	}
 }
 Enemy::Enemy(std::string img, float x, float y, float radius, float speed, float hp, int money) :
-	Engine::Sprite(img, x, y), speed(speed), hp(hp), money(money) {
+	Engine::Sprite(img, x, y), speed(speed), hp(hp), money(money), full_hp(hp){
 	CollisionRadius = radius;
 }
 void Enemy::Hit(float damage) {
@@ -105,6 +108,10 @@ void Enemy::Update(float deltaTime) {
 }
 void Enemy::Draw() const {
 	Sprite::Draw();
+	//Blood strip
+	
+	al_draw_filled_rectangle(Position.x - CollisionRadius - 5 ,Position.y - CollisionRadius - 5 ,Position.x+CollisionRadius + 5,Position.y - CollisionRadius,RED);
+	al_draw_filled_rectangle(Position.x - CollisionRadius - 5 ,Position.y - CollisionRadius - 5 ,Position.x-CollisionRadius - 5 + (CollisionRadius*2+10)*hp/full_hp,Position.y - CollisionRadius,GREEN);
 	if (PlayScene::DebugMode) {
 		// Draw collision radius.
 		al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(255, 0, 0), 2);
